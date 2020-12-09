@@ -13,54 +13,58 @@ import java.util.Scanner;
 public class West2FriedChickenRestaurant implements FriedChickenRestaurant {
 
 	/**
-	 * ¶¨Òå±äÁ¿
+	 * å®šä¹‰å˜é‡
 	 */
-	private double balance;//Óà¶î
-	private LinkedList<Beer> beerList;//Æ¡¾ÆÁĞ±í
-	private  LinkedList <Juice> juiceList;//¹ûÖ­ÁĞ±í
-	private final static LinkedList <SetMeal> setMealList;//Ì×²ÍÁĞ±í
+	private double balance;//ä½™é¢
+	private LinkedList<Beer> beerList;//å•¤é…’åˆ—è¡¨
+	private  LinkedList <Juice> juiceList;//æœæ±åˆ—è¡¨
+	private final static LinkedList <SetMeal> setMealList;//å¥—é¤åˆ—è¡¨
 
 	/**
-	 * ¹¹Ôìº¯Êı
+	LinkedListçš„ä¼˜ç‚¹åœ¨äºåˆ é™¤å’Œæ·»åŠ æ•°æ®æ‰€æ¶ˆè€—çš„èµ„æºè¾ƒå°‘ï¼Œä¸”æ¯”ArrayListæ•ˆç‡é«˜ã€‚
+	
+	*/
+	/**
+	 * æ„é€ å‡½æ•°
 	 */
 	public West2FriedChickenRestaurant(double balance) {
 		super();
 		this.balance = balance;
 		this.beerList = new LinkedList<Beer>();
 		this.juiceList = new LinkedList<Juice>();
-		repertory();//ÎªÁËÊ¹²ÍÌüÄÜ¹»ÓªÒµ£¬Ìá¹©¸÷ÀàÌ×²Í¿â´æ¸÷Ò»·İ
+		repertory();//ä¸ºäº†ä½¿é¤å…èƒ½å¤Ÿè¥ä¸šï¼Œæä¾›å„ç±»å¥—é¤åº“å­˜å„ä¸€ä»½
 	}
 	/**
-	 * ³õÊ¼»¯Ì×²ÍÁĞ±í
+	 * åˆå§‹åŒ–å¥—é¤åˆ—è¡¨
 	 */
 	static {
 		setMealList=new LinkedList<SetMeal>();
-		setMealList.add(new SetMeal("Ì×²Í1", 35, "ÃÀÊ½Õ¨¼¦", new Beer("¹şÆ¡", 6, LocalDate.now(), 2.5f)));
-		setMealList.add(new SetMeal("Ì×²Í2", 45, "º«Ê½Õ¨¼¦", new Beer("Ñ©»¨", 7, LocalDate.now(), 3.5f)));
-		setMealList.add(new SetMeal("Ì×²Í3", 30, "¹ãÊ½Õ¨¼¦", new Juice("¹ûÁ£³È", 4, LocalDate.now())));
-		setMealList.add(new SetMeal("Ì×²Í4", 35, "Ì©Ê½Õ¨¼¦", new Juice("Ò¬Ö­", 5, LocalDate.now())));
+		setMealList.add(new SetMeal("å¥—é¤1", 35, "ç¾å¼ç‚¸é¸¡", new Beer("å“ˆå•¤", 6, LocalDate.now(), 2.5f)));
+		setMealList.add(new SetMeal("å¥—é¤2", 45, "éŸ©å¼ç‚¸é¸¡", new Beer("é›ªèŠ±", 7, LocalDate.now(), 3.5f)));
+		setMealList.add(new SetMeal("å¥—é¤3", 30, "å¹¿å¼ç‚¸é¸¡", new Juice("æœç²’æ©™", 4, LocalDate.now())));
+		setMealList.add(new SetMeal("å¥—é¤4", 35, "æ³°å¼ç‚¸é¸¡", new Juice("æ¤°æ±", 5, LocalDate.now())));
 	}
 
 	/**
-	 * ÎªÁËÊ¹²ÍÌüÄÜ¹»ÓªÒµ£¬Ìá¹©¸÷ÀàÌ×²Í¿â´æ¸÷Ò»·İ
+	 * ä¸ºäº†ä½¿é¤å…èƒ½å¤Ÿè¥ä¸šï¼Œæä¾›å„ç±»å¥—é¤åº“å­˜å„ä¸€ä»½
 	 */
 	public void repertory(){
-		beerList.add(new Beer("¹şÆ¡", 6, LocalDate.now(),2.5f));
-		beerList.add(new Beer("Ñ©»¨", 7, LocalDate.now(),3.5f));
-		juiceList.add(new Juice("¹ûÁ£³È", 5, LocalDate.now()));
-		juiceList.add(new Juice("Ò¬Ö­", 5, LocalDate.now()));
+		beerList.add(new Beer("å“ˆå•¤", 6, LocalDate.now(),2.5f));
+		beerList.add(new Beer("é›ªèŠ±", 7, LocalDate.now(),3.5f));
+		juiceList.add(new Juice("æœç²’æ©™", 5, LocalDate.now()));
+		juiceList.add(new Juice("æ¤°æ±", 5, LocalDate.now()));
 	}
 	/**
-	 * ÔÚ³öÊÛÌ×²Í£¬Í¬Ê±ÒÆ³ı¶ÔÓ¦µÄ¾ÆÀà
+	 * åœ¨å‡ºå”®å¥—é¤ï¼ŒåŒæ—¶ç§»é™¤å¯¹åº”çš„é…’ç±»
 	 *
-	 * @param beer Òª±»³öÊÛµÄ¾ÆÀà
+	 * @param beer è¦è¢«å‡ºå”®çš„é…’ç±»
 	 */
 	public void use(Beer beer) {
 
-		//¼ÇÂ¼ÊÇ·ñÕÒµ½¸ÃÒûÁÏ
+		//è®°å½•æ˜¯å¦æ‰¾åˆ°è¯¥é¥®æ–™
 		boolean found=false;
 		if(beerList!=null) {
-//			¸ù¾İÃû×Ö£¬±éÀúÕÒµ½¶ÔÓ¦µÄ¾ÆÀà
+//			æ ¹æ®åå­—ï¼Œéå†æ‰¾åˆ°å¯¹åº”çš„é…’ç±»
 			for(Beer oneBeer:beerList) {
 				if(oneBeer.getDrinkName().equals(beer.getDrinkName())) {
 					beerList.remove(oneBeer);
@@ -69,25 +73,25 @@ public class West2FriedChickenRestaurant implements FriedChickenRestaurant {
 				}
 			}
 		}
-		//Èç¹ûÃ»ÓĞÕÒµ½£¬Å×³öÒì³£
+		//å¦‚æœæ²¡æœ‰æ‰¾åˆ°ï¼ŒæŠ›å‡ºå¼‚å¸¸
 		if(!found) {
-			String msg="ºÜ±§Ç¸£¬ "+beer.getDrinkName()+"ÒÑ¾­ÊÛ¿Õ¡£";
+			String msg="å¾ˆæŠ±æ­‰ï¼Œ "+beer.getDrinkName()+"å·²ç»å”®ç©ºã€‚";
 			throw new IngredientSortOutException(msg);
 		}
 	}
 
 	/**
-	 * ÔÚ³öÊÛÌ×²Í£¬Í¬Ê±ÒÆ³ı¶ÔÓ¦µÄ¹ûÖ­
+	 * åœ¨å‡ºå”®å¥—é¤ï¼ŒåŒæ—¶ç§»é™¤å¯¹åº”çš„æœæ±
 	 *
-	 * @param juice Òª±»³öÊÛµÄ¹ûÖ­
+	 * @param juice è¦è¢«å‡ºå”®çš„æœæ±
 	 */
 	public void use(Juice juice) {
 
-		//¼ÇÂ¼ÊÇ·ñÕÒµ½¸ÃÒûÁÏ
+		//è®°å½•æ˜¯å¦æ‰¾åˆ°è¯¥é¥®æ–™
 		boolean found=false;
 
 		if(juiceList!=null) {
-//			¸ù¾İÃû×Ö£¬±éÀúÕÒµ½¶ÔÓ¦µÄ¹ûÖ­
+//			æ ¹æ®åå­—ï¼Œéå†æ‰¾åˆ°å¯¹åº”çš„æœæ±
 			for(Juice oneJuice:juiceList) {
 				if(oneJuice.getDrinkName().equals(juice.getDrinkName())) {
 					juiceList.remove(oneJuice);
@@ -96,21 +100,21 @@ public class West2FriedChickenRestaurant implements FriedChickenRestaurant {
 				}
 			}
 		}
-		//Èç¹ûÃ»ÓĞÕÒµ½£¬Å×³öÒì³£
+		//å¦‚æœæ²¡æœ‰æ‰¾åˆ°ï¼ŒæŠ›å‡ºå¼‚å¸¸
 		if(!found) {
-			String msg="ºÜ±§Ç¸£¬ "+juice.getDrinkName()+"ÒÑ¾­ÊÛ¿Õ¡£";
+			String msg="å¾ˆæŠ±æ­‰ï¼Œ "+juice.getDrinkName()+"å·²ç»å”®ç©ºã€‚";
 			throw new IngredientSortOutException(msg);
 		}
 	}
 	/**
-	 * ³öÊÛÌ×²Í
+	 * å‡ºå”®å¥—é¤
 	 */
 	public void use(String setMealName ) {
-		//¼ÇÂ¼ÊÇ·ñÕÒµ½¸ÃÌ×²Í
+		//è®°å½•æ˜¯å¦æ‰¾åˆ°è¯¥å¥—é¤
 		boolean found=false;
 		SetMeal choose = new SetMeal();
 		if(setMealList!=null) {
-//			¸ù¾İÃû×Ö£¬±éÀúÕÒµ½¶ÔÓ¦µÄÌ×²Í
+//			æ ¹æ®åå­—ï¼Œéå†æ‰¾åˆ°å¯¹åº”çš„å¥—é¤
 			for(SetMeal meal:setMealList) {
 				if(setMealName.equals(meal.getMealName())) {
 					found=true;
@@ -119,182 +123,182 @@ public class West2FriedChickenRestaurant implements FriedChickenRestaurant {
 				}
 			}
 		}
-		//Èç¹ûÃ»ÕÒµ½
+		//å¦‚æœæ²¡æ‰¾åˆ°
 		if(!found) {
-			String msg="ºÜ±§Ç¸£¬ "+setMealName+"ÊÛÍêÁË¡£";
+			String msg="å¾ˆæŠ±æ­‰ï¼Œ "+setMealName+"å”®å®Œäº†ã€‚";
 			throw new IngredientSortOutException(msg);
 		}else {
-			//Èç¹ûÕÒµ½£¬ÒªÒÆ³ıÏàÓ¦µÄÒûÁÏÁĞ±íÖĞµÄÒûÁÏ
+			//å¦‚æœæ‰¾åˆ°ï¼Œè¦ç§»é™¤ç›¸åº”çš„é¥®æ–™åˆ—è¡¨ä¸­çš„é¥®æ–™
 			boolean checkDrinks=true;
 			Drinks drinkType=choose.getType();
 			try {
-				//Èç¹ûÊÇ¾ÆÀà
+				//å¦‚æœæ˜¯é…’ç±»
 				if(drinkType instanceof Beer) {
 					Beer beer=(Beer)drinkType;
 					use(beer);
-				}else if(drinkType instanceof Drinks) {//Èç¹ûÊÇ¹ûÖ­
+				}else if(drinkType instanceof Drinks) {//å¦‚æœæ˜¯æœæ±
 					Juice juice=(Juice)drinkType;
 					use(juice);
 				}
 			} catch (IngredientSortOutException e) {
 				checkDrinks=false;
-				throw new IngredientSortOutException("Ê®·Ö±§Ç¸£¬¸ÃÌ×²ÍÒÑ¾­ÊÛ¿Õ¡£");
+				throw new IngredientSortOutException("ååˆ†æŠ±æ­‰ï¼Œè¯¥å¥—é¤å·²ç»å”®ç©ºã€‚");
 			}
-			//³öÊÛ³É¹¦£¬»ñµÃÊÕ¿î
+			//å‡ºå”®æˆåŠŸï¼Œè·å¾—æ”¶æ¬¾
 			if(checkDrinks) {
-				balance+=choose.getMealPrice();//ÊÕ¿î
-				System.out.println(setMealName+"¹ºÂò³É¹¦£¬×£ÄúÓÃ²ÍÓä¿ì!");
+				balance+=choose.getMealPrice();//æ”¶æ¬¾
+				System.out.println(setMealName+"è´­ä¹°æˆåŠŸï¼Œç¥æ‚¨ç”¨é¤æ„‰å¿«!");
 			}
 		}
 
 	}
 
-	//½øĞĞÊÛÂô
+	//è¿›è¡Œå”®å–
 	@Override
 	public void sellMeal() {
 		// TODO Auto-generated method stub
-		//Õ¹Ê¾Ì×²Í²Ëµ¥
+		//å±•ç¤ºå¥—é¤èœå•
 		for(SetMeal meal:setMealList) {
 			System.out.println(meal);
 		}
-		System.out.println("ÇëÊäÈëÄúÒª¹ºÂòµÄÌ×²Í¡¾ÌáÊ¾£ºÊäÈë1,2,3,4¼´¿É¡¿");
+		System.out.println("è¯·è¾“å…¥æ‚¨è¦è´­ä¹°çš„å¥—é¤ã€æç¤ºï¼šè¾“å…¥1,2,3,4å³å¯ã€‘");
 		Scanner sc = new Scanner(System.in);
-		//»ñÈ¡ÓÃ»§µÄÊäÈë
+		//è·å–ç”¨æˆ·çš„è¾“å…¥
 		int choose=0;
 		try {
 			choose = sc.nextInt();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
-			throw new RuntimeException("·Ç·¨ÊäÈë£¬ÇëÖØĞÂÊäÈë");
+			throw new RuntimeException("éæ³•è¾“å…¥ï¼Œè¯·é‡æ–°è¾“å…¥");
 		}
-		String chooseName="Ì×²Í"+choose;
+		String chooseName="å¥—é¤"+choose;
 		try {
-			// ÊÛ³öÌ×²Í
+			// å”®å‡ºå¥—é¤
 			use(chooseName);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			throw new RuntimeException("ÄúÊäÈëµÄÌ×²Í²»´æÔÚ£¬ÇëÖØĞÂÊäÈë»òµ½½ø»õµã¹ºÂò¡£");
+			throw new RuntimeException("æ‚¨è¾“å…¥çš„å¥—é¤ä¸å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥æˆ–åˆ°è¿›è´§ç‚¹è´­ä¹°ã€‚");
 		}
 
 	}
 
 
 	/**
-	 * ÅúÁ¿½ø»õ
+	 * æ‰¹é‡è¿›è´§
 	 */
 	@Override
 	public void purchases() {
 		Scanner sc=new Scanner(System.in);
-		System.out.println("»¶Ó­½øÈëÎ÷¶ş½ø»õµã");
+		System.out.println("æ¬¢è¿è¿›å…¥è¥¿äºŒè¿›è´§ç‚¹");
 		while(true) {
 
-			System.out.println("ÇëÑ¡ÔñÄúĞèÒª¹ºÂòµÄÉÌÆ·");
-			System.out.println("1.¾ÆÀà\n2.¹ûÖ­Àà\n3.Àë¿ª");
+			System.out.println("è¯·é€‰æ‹©æ‚¨éœ€è¦è´­ä¹°çš„å•†å“");
+			System.out.println("1.é…’ç±»\n2.æœæ±ç±»\n3.ç¦»å¼€");
 			int choose=0;
 			try {
 				choose = sc.nextInt();
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
-				throw new RuntimeException("·Ç·¨ÊäÈë£¬ÇëÖØĞÂÊäÈë");
+				throw new RuntimeException("éæ³•è¾“å…¥ï¼Œè¯·é‡æ–°è¾“å…¥");
 			}
 			switch (choose) {
 //			-----------------------------------------------------------------------
 				/**
-				 * ¹ºÂò¾ÆÀà
+				 * è´­ä¹°é…’ç±»
 				 */
 				case 1:
-					System.out.println("»¶Ó­ÄúÀ´µ½¾ÆÀà½ø»õµã");
-					System.out.println("³¬ÊĞÏÖ´æ¾ÆÀàÀàĞÍÈçÏÂ");
-					System.out.println("1.¹şÆ¡\n2.Ñ©»¨\n");
-					System.out.println("ÇëÊäÈëÒª¹ºÂòµÄ¾ÆÀà");
+					System.out.println("æ¬¢è¿æ‚¨æ¥åˆ°é…’ç±»è¿›è´§ç‚¹");
+					System.out.println("è¶…å¸‚ç°å­˜é…’ç±»ç±»å‹å¦‚ä¸‹");
+					System.out.println("1.å“ˆå•¤\n2.é›ªèŠ±\n");
+					System.out.println("è¯·è¾“å…¥è¦è´­ä¹°çš„é…’ç±»");
 					int type=sc.nextInt();
-					int count=0;//¹ºÂòÊıÁ¿
+					int count=0;//è´­ä¹°æ•°é‡
 					switch (type) {
 						/**
-						 * ¹ºÂò¹şÆ¡
+						 * è´­ä¹°å“ˆå•¤
 						 */
 						case 1:
-							System.out.println("ÇëÊäÈëÒª¹ºÂòµÄÊıÁ¿");
+							System.out.println("è¯·è¾“å…¥è¦è´­ä¹°çš„æ•°é‡");
 							count = sc.nextInt();
-							//¼ì²éÓà¶îÊÇ·ñ×ã¹»
-							//	¼ÆËã¹ºÂòÔ¤¼Æ»¨·Ñ
+							//æ£€æŸ¥ä½™é¢æ˜¯å¦è¶³å¤Ÿ
+							//	è®¡ç®—è´­ä¹°é¢„è®¡èŠ±è´¹
 							double expectMoney1=count*6;
 							if(balance-expectMoney1<0) {
 
-								//¼ÆËã½ø»õ²î¶àÉÙÇ®
+								//è®¡ç®—è¿›è´§å·®å¤šå°‘é’±
 								double overBudget=-(balance-expectMoney1);
-								throw new OverdraftBalanceException("½ø»õËùĞè·ÑÓÃ³¬³öÓµÓĞÓà¶î£¬»¹²î"+overBudget+"Ôª");
+								throw new OverdraftBalanceException("è¿›è´§æ‰€éœ€è´¹ç”¨è¶…å‡ºæ‹¥æœ‰ä½™é¢ï¼Œè¿˜å·®"+overBudget+"å…ƒ");
 							}
 
-							int i=0;//ÓÃÀ´¼ÇÂ¼µÚ¼¸¼şÉÌÆ·
-							System.out.println("ÇëÊäÈëÄúÒª¹ºÂòµÄÉÌÆ·µÄÉú²úÈÕÆÚ");
+							int i=0;//ç”¨æ¥è®°å½•ç¬¬å‡ ä»¶å•†å“
+							System.out.println("è¯·è¾“å…¥æ‚¨è¦è´­ä¹°çš„å•†å“çš„ç”Ÿäº§æ—¥æœŸ");
 							while(count>0) {
 								i++;
-//								ÈÃÓÃ»§ÊäÈëÒª¹ºÂòµÄÊÓÆµµÄÈÕÆÚ
-								System.out.println("ÇëÊäÈëµÚ"+i+"¼şÉÌÆ·µÄÉú²úÄê·İ");
+//								è®©ç”¨æˆ·è¾“å…¥è¦è´­ä¹°çš„è§†é¢‘çš„æ—¥æœŸ
+								System.out.println("è¯·è¾“å…¥ç¬¬"+i+"ä»¶å•†å“çš„ç”Ÿäº§å¹´ä»½");
 								int year=sc.nextInt();
-								System.out.println("ÇëÊäÈëµÚ"+i+"¼şµÄÉÌÆ·µÄÉú²úÔÂ·İ");
+								System.out.println("è¯·è¾“å…¥ç¬¬"+i+"ä»¶çš„å•†å“çš„ç”Ÿäº§æœˆä»½");
 								int month=sc.nextInt();
-								System.out.println("ÇëÊäÈëµÚ"+i+"¼şµÄÉÌÆ·µÄÉú²úÈÕÆÚ");
+								System.out.println("è¯·è¾“å…¥ç¬¬"+i+"ä»¶çš„å•†å“çš„ç”Ÿäº§æ—¥æœŸ");
 								int day=sc.nextInt();
 
-								Beer b=new Beer("¹şÆ¡", 6, LocalDate.of(year, month, day), 2.5f);
+								Beer b=new Beer("å“ˆå•¤", 6, LocalDate.of(year, month, day), 2.5f);
 								if(b.checkIfOverDue()){
-									System.out.println("¸ÃÉÌÆ·ÒÑ¾­¹ıÆÚ£¬ÇëÖØĞÂÑ¡Ôñ");
+									System.out.println("è¯¥å•†å“å·²ç»è¿‡æœŸï¼Œè¯·é‡æ–°é€‰æ‹©");
 									i--;
 									continue;
 								}
 								beerList.add(b);
 								count--;
 							}
-							System.out.println("¹ºÂò³É¹¦£¡");
-							balance-=expectMoney1;//ÊÕÒø
+							System.out.println("è´­ä¹°æˆåŠŸï¼");
+							balance-=expectMoney1;//æ”¶é“¶
 
 							break;
 						/**
-						 * ¹ºÂòÑ©»¨
+						 * è´­ä¹°é›ªèŠ±
 						 */
 						case 2:
-							System.out.println("ÇëÊäÈëÒª¹ºÂòµÄÊıÁ¿");
+							System.out.println("è¯·è¾“å…¥è¦è´­ä¹°çš„æ•°é‡");
 
 							count=sc.nextInt();
 
-							//¼ì²éÓà¶îÊÇ·ñ×ã¹»
-							//					¼ÆËã¹ºÂòÔ¤¼Æ»¨·Ñ
+							//æ£€æŸ¥ä½™é¢æ˜¯å¦è¶³å¤Ÿ
+							//					è®¡ç®—è´­ä¹°é¢„è®¡èŠ±è´¹
 							double expectMoney2=count*7;
 							if(balance-expectMoney2<0) {
 
-								//¼ÆËã½ø»õ²î¶àÉÙÇ®
+								//è®¡ç®—è¿›è´§å·®å¤šå°‘é’±
 								double overBudget=-(balance-expectMoney2);
-								throw new OverdraftBalanceException("½ø»õ·ÑÓÃ³¬³öÓµÓĞÓà¶î£¬»¹²î"+overBudget+"Ôª");
+								throw new OverdraftBalanceException("è¿›è´§è´¹ç”¨è¶…å‡ºæ‹¥æœ‰ä½™é¢ï¼Œè¿˜å·®"+overBudget+"å…ƒ");
 							}
-							//					ÓÃÀ´¼ÇÂ¼µÚ¼¸¼şÉÌÆ·
+							//					ç”¨æ¥è®°å½•ç¬¬å‡ ä»¶å•†å“
 							int i2=0;
-							System.out.println("ÇëÊäÈëÄúÒª¹ºÂòµÄÉÌÆ·µÄÉú²úÈÕÆÚ");
+							System.out.println("è¯·è¾“å…¥æ‚¨è¦è´­ä¹°çš„å•†å“çš„ç”Ÿäº§æ—¥æœŸ");
 							while(count>0) {
 								i2++;
-								//						ÈÃÓÃ»§ÊäÈëÒª¹ºÂòµÄÊÓÆµµÄÈÕÆÚ
-								System.out.println("ÇëÊäÈëµÚ"+i2+"¼şÉÌÆ·µÄÉú²úÄê·İ");
+								//						è®©ç”¨æˆ·è¾“å…¥è¦è´­ä¹°çš„è§†é¢‘çš„æ—¥æœŸ
+								System.out.println("è¯·è¾“å…¥ç¬¬"+i2+"ä»¶å•†å“çš„ç”Ÿäº§å¹´ä»½");
 								int year=sc.nextInt();
-								System.out.println("ÇëÊäÈëµÚ"+i2+"¼şµÄÉÌÆ·µÄÉú²úÔÂ·İ");
+								System.out.println("è¯·è¾“å…¥ç¬¬"+i2+"ä»¶çš„å•†å“çš„ç”Ÿäº§æœˆä»½");
 								int month=sc.nextInt();
-								System.out.println("ÇëÊäÈëµÚ"+i2+"¼şµÄÉÌÆ·µÄÉú²úÈÕÆÚ");
+								System.out.println("è¯·è¾“å…¥ç¬¬"+i2+"ä»¶çš„å•†å“çš„ç”Ÿäº§æ—¥æœŸ");
 								int day=sc.nextInt();
-								Beer b=new Beer("Ñ©»¨", 7, LocalDate.of(year, month, day), 3.5f);
+								Beer b=new Beer("é›ªèŠ±", 7, LocalDate.of(year, month, day), 3.5f);
 								if(b.checkIfOverDue()){
-									System.out.println("¸ÃÉÌÆ·ÒÑ¾­¹ıÆÚ£¬ÇëÖØĞÂÑ¡Ôñ");
+									System.out.println("è¯¥å•†å“å·²ç»è¿‡æœŸï¼Œè¯·é‡æ–°é€‰æ‹©");
 									i2--;
 									continue;
 								}
 								beerList.add(b);
 								count--;
 							}
-							System.out.println("¹ºÂò³É¹¦£¡");
+							System.out.println("è´­ä¹°æˆåŠŸï¼");
 							balance-=expectMoney2;
 							break;
 
 						default:
-							System.out.println("·Ç·¨ÊäÈë¡£");
+							System.out.println("éæ³•è¾“å…¥ã€‚");
 							break;
 					}
 
@@ -302,100 +306,100 @@ public class West2FriedChickenRestaurant implements FriedChickenRestaurant {
 //					-----------------------------------------------------------------------
 //					-----------------------------------------------------------------------
 				/**
-				 * ¹ºÂò¹ûÖ­
+				 * è´­ä¹°æœæ±
 				 */
 				case 2:
-					System.out.println("»¶Ó­ÄúÀ´µ½¹ûÖ­½ø»õµã");
-					System.out.println("³¬ÊĞÏÖ´æ¹ûÖ­ÀàĞÍÈçÏÂ");
-					System.out.println("1.¹ûÁ£³È\n2.Ò¬Ö­\n");
-					System.out.println("ÇëÊäÈëÒª¹ºÂòµÄ¹ûÖ­");
+					System.out.println("æ¬¢è¿æ‚¨æ¥åˆ°æœæ±è¿›è´§ç‚¹");
+					System.out.println("è¶…å¸‚ç°å­˜æœæ±ç±»å‹å¦‚ä¸‹");
+					System.out.println("1.æœç²’æ©™\n2.æ¤°æ±\n");
+					System.out.println("è¯·è¾“å…¥è¦è´­ä¹°çš„æœæ±");
 					int type2=sc.nextInt();
 
 					switch (type2) {
 						/**
-						 * ¹ºÂò¹ûÁ£³È
+						 * è´­ä¹°æœç²’æ©™
 						 */
 						case 1:
-							System.out.println("ÇëÊäÈëÒª¹ºÂòµÄÊıÁ¿");
+							System.out.println("è¯·è¾“å…¥è¦è´­ä¹°çš„æ•°é‡");
 							count=sc.nextInt();
 
-							//¼ì²éÓà¶îÊÇ·ñ×ã¹»
+							//æ£€æŸ¥ä½™é¢æ˜¯å¦è¶³å¤Ÿ
 
-							//					¼ÆËã¹ºÂòÔ¤¼Æ»¨·Ñ
+							//					è®¡ç®—è´­ä¹°é¢„è®¡èŠ±è´¹
 							double expectMoney1=count*4;
-							//					Èç¹û¿ÉÒÔ¹ºÂòºóÓà¶î×ã¹»£¬Ôò¹ºÂò
+							//					å¦‚æœå¯ä»¥è´­ä¹°åä½™é¢è¶³å¤Ÿï¼Œåˆ™è´­ä¹°
 							if(balance-expectMoney1<0) {
-								//¼ÆËã½ø»õ²î¶àÉÙÇ®
+								//è®¡ç®—è¿›è´§å·®å¤šå°‘é’±
 								double overBudget=-(balance-expectMoney1);
-								throw new OverdraftBalanceException("½ø»õ·ÑÓÃ³¬³öÓµÓĞÓà¶î£¬»¹²î"+overBudget+"Ôª");
+								throw new OverdraftBalanceException("è¿›è´§è´¹ç”¨è¶…å‡ºæ‹¥æœ‰ä½™é¢ï¼Œè¿˜å·®"+overBudget+"å…ƒ");
 							}
-							//					ÓÃÀ´¼ÇÂ¼µÚ¼¸¼şÉÌÆ·
+							//					ç”¨æ¥è®°å½•ç¬¬å‡ ä»¶å•†å“
 							int i=0;
-							System.out.println("ÇëÊäÈëÄúÒª¹ºÂòµÄÉÌÆ·µÄÉú²úÈÕÆÚ");
+							System.out.println("è¯·è¾“å…¥æ‚¨è¦è´­ä¹°çš„å•†å“çš„ç”Ÿäº§æ—¥æœŸ");
 							while(count>0) {
 								i++;
-								//						ÈÃÓÃ»§ÊäÈëÒª¹ºÂòµÄÊÓÆµµÄÈÕÆÚ
-								System.out.println("ÇëÊäÈëµÚ"+i+"¼şÉÌÆ·µÄÉú²úÄê·İ");
+								//						è®©ç”¨æˆ·è¾“å…¥è¦è´­ä¹°çš„è§†é¢‘çš„æ—¥æœŸ
+								System.out.println("è¯·è¾“å…¥ç¬¬"+i+"ä»¶å•†å“çš„ç”Ÿäº§å¹´ä»½");
 								int year=sc.nextInt();
-								System.out.println("ÇëÊäÈëµÚ"+i+"¼şµÄÉÌÆ·µÄÉú²úÔÂ·İ");
+								System.out.println("è¯·è¾“å…¥ç¬¬"+i+"ä»¶çš„å•†å“çš„ç”Ÿäº§æœˆä»½");
 								int month=sc.nextInt();
-								System.out.println("ÇëÊäÈëµÚ"+i+"¼şµÄÉÌÆ·µÄÉú²úÈÕÆÚ");
+								System.out.println("è¯·è¾“å…¥ç¬¬"+i+"ä»¶çš„å•†å“çš„ç”Ÿäº§æ—¥æœŸ");
 								int day=sc.nextInt();
-								Juice j=new Juice("¹ûÁ£³È", 4, LocalDate.of(year, month, day));
+								Juice j=new Juice("æœç²’æ©™", 4, LocalDate.of(year, month, day));
 								if(j.checkIfOverDue()){
-									System.out.println("¸ÃÉÌÆ·ÒÑ¾­¹ıÆÚÁË£¬ÇëÖØĞÂÊäÈë");
+									System.out.println("è¯¥å•†å“å·²ç»è¿‡æœŸäº†ï¼Œè¯·é‡æ–°è¾“å…¥");
 									i--;
 									continue;
 								}
 								juiceList.add(j);
 								count--;
 							}
-							System.out.println("¹ºÂò³É¹¦£¡");
-							balance-=expectMoney1;//ÊÕÒø
+							System.out.println("è´­ä¹°æˆåŠŸï¼");
+							balance-=expectMoney1;//æ”¶é“¶
 							break;
 						/**
-						 * ¹ºÂòÒ¬Ö­
+						 * è´­ä¹°æ¤°æ±
 						 */
 						case 2:
-							System.out.println("ÇëÊäÈëÒª¹ºÂòµÄÊıÁ¿");
+							System.out.println("è¯·è¾“å…¥è¦è´­ä¹°çš„æ•°é‡");
 							count=sc.nextInt();
-							//¼ì²éÓà¶îÊÇ·ñ×ã¹»
+							//æ£€æŸ¥ä½™é¢æ˜¯å¦è¶³å¤Ÿ
 
-							//					¼ÆËã¹ºÂòÔ¤¼Æ»¨·Ñ
+							//					è®¡ç®—è´­ä¹°é¢„è®¡èŠ±è´¹
 							double expectMoney2=count*5;
-							//					Èç¹û¿ÉÒÔ¹ºÂòºóÓà¶î×ã¹»£¬Ôò¹ºÂò
+							//					å¦‚æœå¯ä»¥è´­ä¹°åä½™é¢è¶³å¤Ÿï¼Œåˆ™è´­ä¹°
 							if(balance-expectMoney2<0) {
-								//¼ÆËã½ø»õ²î¶àÉÙÇ®
+								//è®¡ç®—è¿›è´§å·®å¤šå°‘é’±
 								double overBudget=-(balance-expectMoney2);
-								throw new OverdraftBalanceException("½ø»õ·ÑÓÃ³¬³öÓµÓĞÓà¶î£¬»¹²î"+overBudget+"Ôª");
+								throw new OverdraftBalanceException("è¿›è´§è´¹ç”¨è¶…å‡ºæ‹¥æœ‰ä½™é¢ï¼Œè¿˜å·®"+overBudget+"å…ƒ");
 							}
-							//					ÓÃÀ´¼ÇÂ¼µÚ¼¸¼şÉÌÆ·
+							//					ç”¨æ¥è®°å½•ç¬¬å‡ ä»¶å•†å“
 							int i2=0;
-							System.out.println("ÇëÊäÈëÄúÒª¹ºÂòµÄÉÌÆ·µÄÉú²úÈÕÆÚ");
+							System.out.println("è¯·è¾“å…¥æ‚¨è¦è´­ä¹°çš„å•†å“çš„ç”Ÿäº§æ—¥æœŸ");
 							while(count>0) {
 								i2++;
-								//						ÈÃÓÃ»§ÊäÈëÒª¹ºÂòµÄÊÓÆµµÄÈÕÆÚ
-								System.out.println("ÇëÊäÈëµÚ"+i2+"¼şÉÌÆ·µÄÉú²úÄê·İ");
+								//						è®©ç”¨æˆ·è¾“å…¥è¦è´­ä¹°çš„è§†é¢‘çš„æ—¥æœŸ
+								System.out.println("è¯·è¾“å…¥ç¬¬"+i2+"ä»¶å•†å“çš„ç”Ÿäº§å¹´ä»½");
 								int year=sc.nextInt();
-								System.out.println("ÇëÊäÈëµÚ"+i2+"¼şµÄÉÌÆ·µÄÉú²úÔÂ·İ");
+								System.out.println("è¯·è¾“å…¥ç¬¬"+i2+"ä»¶çš„å•†å“çš„ç”Ÿäº§æœˆä»½");
 								int month=sc.nextInt();
-								System.out.println("ÇëÊäÈëµÚ"+i2+"¼şµÄÉÌÆ·µÄÉú²úÈÕÆÚ");
+								System.out.println("è¯·è¾“å…¥ç¬¬"+i2+"ä»¶çš„å•†å“çš„ç”Ÿäº§æ—¥æœŸ");
 								int day=sc.nextInt();
-								Juice j=new Juice("Ò¬Ö­", 5, LocalDate.of(year, month, day));
+								Juice j=new Juice("æ¤°æ±", 5, LocalDate.of(year, month, day));
 								if(j.checkIfOverDue()){
-									System.out.println("¸ÃÉÌÆ·ÒÑ¾­¹ıÆÚ£¬ÇëÖØĞÂÑ¡Ôñ");
+									System.out.println("è¯¥å•†å“å·²ç»è¿‡æœŸï¼Œè¯·é‡æ–°é€‰æ‹©");
 									i2--;
 									continue;
 								}
 								juiceList.add(j);
 								count--;
 							}
-							System.out.println("¹ºÂò³É¹¦£¡");
+							System.out.println("è´­ä¹°æˆåŠŸï¼");
 							balance-=expectMoney2;
 							break;
 
 						default:
-							System.out.println("·Ç·¨ÊäÈë");
+							System.out.println("éæ³•è¾“å…¥");
 							break;
 					}
 
@@ -403,27 +407,27 @@ public class West2FriedChickenRestaurant implements FriedChickenRestaurant {
 //							-----------------------------------------------------------------------
 
 				case 3:
-					System.out.println("·µ»ØÖ÷Ò³Ãæ³É¹¦");
+					System.out.println("è¿”å›ä¸»é¡µé¢æˆåŠŸ");
 					return;
 
 				default:
-					System.out.println("·Ç·¨ÊäÈë");
+					System.out.println("éæ³•è¾“å…¥");
 					break;
 			}
 			/**
-			 * Ñ¡Ôñ²Ù×÷
+			 * é€‰æ‹©æ“ä½œ
 			 */
-			System.out.println("ÇëÑ¡Ôñ\n1.¼ÌĞø½ø»õ\n2.·µ»ØÖ÷Ò³Ãæ");
+			System.out.println("è¯·é€‰æ‹©\n1.ç»§ç»­è¿›è´§\n2.è¿”å›ä¸»é¡µé¢");
 			int choose1=sc.nextInt();
 			switch (choose1) {
 				case 1:
-					//¼ÌĞø½ø»õ
+					//ç»§ç»­è¿›è´§
 					break;
 				case 2:
-					System.out.println("½ø»õ½áÊø");
+					System.out.println("è¿›è´§ç»“æŸ");
 					return;
 				default:
-					System.out.println("·Ç·¨ÊäÈë£¬ÇëÖØĞÂÊäÈëÄúµÄÑ¡Ôñ");
+					System.out.println("éæ³•è¾“å…¥ï¼Œè¯·é‡æ–°è¾“å…¥æ‚¨çš„é€‰æ‹©");
 					break;
 			}
 		}
@@ -431,7 +435,7 @@ public class West2FriedChickenRestaurant implements FriedChickenRestaurant {
 	}
 
 	/**
-	 * 	 ·µ»ØÓà¶î
+	 * 	 è¿”å›ä½™é¢
 	 * @return
 	 */
 	public double getBalance() {
@@ -439,17 +443,17 @@ public class West2FriedChickenRestaurant implements FriedChickenRestaurant {
 	}
 
 	/**
-	 * ²é¿´¿â´æ
+	 * æŸ¥çœ‹åº“å­˜
 	 */
 	public void checkInventory () {
 		int hapiCount=0,baiweiCount=0,minuteMaid=0,coconutJuice=0;
 		for(Beer beer:beerList) {
 			String name=beer.getDrinkName();
 			switch (name) {
-				case "¹şÆ¡":
+				case "å“ˆå•¤":
 					hapiCount++;
 					break;
-				case "Ñ©»¨":
+				case "é›ªèŠ±":
 					baiweiCount++;
 					break;
 				default:
@@ -460,10 +464,10 @@ public class West2FriedChickenRestaurant implements FriedChickenRestaurant {
 		for(Juice juice:juiceList) {
 			String name=juice.getDrinkName();
 			switch (name) {
-				case "¹ûÁ£³È":
+				case "æœç²’æ©™":
 					minuteMaid++;
 					break;
-				case "Ò¬Ö­":
+				case "æ¤°æ±":
 					coconutJuice++;
 					break;
 				default:
@@ -472,10 +476,10 @@ public class West2FriedChickenRestaurant implements FriedChickenRestaurant {
 
 
 		}
-		System.out.println("Ì×²ÍÒ»¡¾¹şÆ¡¡¿ÏÖÓĞ¿â´æ"+hapiCount+"Ì×");
-		System.out.println("Ì×²Í¶ş¡¾Ñ©»¨¡¿ÏÖÓĞ¿â´æ"+baiweiCount+"Ì×");
-		System.out.println("Ì×²ÍÈı¡¾¹ûÁ£³È¡¿ÏÖÓĞ¿â´æ"+minuteMaid+"Ì×");
-		System.out.println("Ì×²ÍËÄ¡¾Ò¬Ö­¡¿ÏÖÓĞ¿â´æ"+coconutJuice+"Ì×");
+		System.out.println("å¥—é¤ä¸€ã€å“ˆå•¤ã€‘ç°æœ‰åº“å­˜"+hapiCount+"å¥—");
+		System.out.println("å¥—é¤äºŒã€é›ªèŠ±ã€‘ç°æœ‰åº“å­˜"+baiweiCount+"å¥—");
+		System.out.println("å¥—é¤ä¸‰ã€æœç²’æ©™ã€‘ç°æœ‰åº“å­˜"+minuteMaid+"å¥—");
+		System.out.println("å¥—é¤å››ã€æ¤°æ±ã€‘ç°æœ‰åº“å­˜"+coconutJuice+"å¥—");
 
 	}
 
