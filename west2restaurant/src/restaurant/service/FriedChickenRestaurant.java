@@ -2,9 +2,9 @@ package restaurant.service;
 
 
 public interface FriedChickenRestaurant {
-//	出售套餐
+//	sell meal
 	void sellMeal();
 
-//	批量进货
+//	buy goods
 	void purchases();
 }
